@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer } from "react";
+import Header from "./components/Header";
+import data from "./data/data.json";
+import StartScreen from "./components/StartScreen";
 
-function App() {
+const initialState = data.quizzes;
+
+console.log(initialState);
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "html":
+      return console.log("da");
+    case "css":
+      return console.log("da");
+    case "javascript":
+      return console.log("da");
+    case "accessibility":
+      return console.log("da");
+    default:
+      throw new Error("Something went wrong!");
+  }
+}
+
+export default function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <StartScreen />
     </div>
   );
 }
 
-export default App;
+/*
+
+    <!-- Quiz menu start -->
+
+
+
+    <!-- Quiz menu end -->
+
+    <!-- Quiz question start -->
+
+    Question
+    <!-- number -->
+    of 10 A B C D Submit answer
+
+    <!-- Quiz question end -->
+
+    <!-- Quiz completed start -->
+
+    Quiz completed You scored...
+
+    <!-- score -->
+    out of 10
+
+    <!-- Quiz completed end -->
+
+*/
