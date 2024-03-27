@@ -1,32 +1,49 @@
 import "./styles.css";
+import data from "./data/data.json";
+import StartScreen from "./components/StartScreen";
+import { useReducer } from "react";
+import Quiestion from "./components/Quiestion";
+import { type } from "@testing-library/user-event/dist/type";
+import { useEffect } from "react";
 
-export default function App() {
-  return <div>hello world</div>;
+const initialState = {
+  topics: data.quizzes,
+  currentTopic: null,
+  status: "start",
+  index: 0,
+  answer: 0,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "active":
+      return { ...state, status: "active", currentTopic: action.payload };
+    case "nextQuestion":
+      return { ...state, index: state.index + 1 };
+
+    default:
+      throw new Error("Something went wrong, try again.");
+  }
 }
 
-/*
+export default function App() {
+  const [{ topics, currentTopic, status, index }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
-    <!-- Quiz menu start -->
+  console.log(currentTopic);
 
-
-
-    <!-- Quiz menu end -->
-
-    <!-- Quiz question start -->
-
-    Question
-    <!-- number -->
-    of 10 A B C D Submit answer
-
-    <!-- Quiz question end -->
-
-    <!-- Quiz completed start -->
-
-    Quiz completed You scored...
-
-    <!-- score -->
-    out of 10
-
-    <!-- Quiz completed end -->
-
-*/
+  return (
+    <main>
+      <div className="container">
+        {status === "start" && (
+          <StartScreen topics={topics} dispatch={dispatch} />
+        )}
+        {status === "active" && (
+          <Quiestion currentTopic={currentTopic} index={index} />
+        )}
+      </div>
+    </main>
+  );
+}
