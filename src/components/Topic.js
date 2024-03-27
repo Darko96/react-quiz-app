@@ -1,4 +1,5 @@
-function Topic({ topic, dispatch }) {
+function Topic({ topic, dispatch, currentTopic }) {
+  console.log(topic);
   //   console.log(topic);
   return (
     <div

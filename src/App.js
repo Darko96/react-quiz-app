@@ -3,23 +3,55 @@ import data from "./data/data.json";
 import StartScreen from "./components/StartScreen";
 import { useReducer } from "react";
 import Quiestion from "./components/Quiestion";
-import { type } from "@testing-library/user-event/dist/type";
-import { useEffect } from "react";
+import FinishScreen from "./components/FinishScreen";
 
 const initialState = {
   topics: data.quizzes,
   currentTopic: null,
   status: "start",
   index: 0,
-  answer: 0,
+  selectedAnswer: null,
+  answer: null,
+  points: 0,
+  themeMood: "light",
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "active":
       return { ...state, status: "active", currentTopic: action.payload };
+    case "selectedAnswer":
+      return { ...state, selectedAnswer: action.payload };
+    case "newAnswer":
+      return {
+        ...state,
+        answer: action.payload,
+      };
     case "nextQuestion":
-      return { ...state, index: state.index + 1 };
+      const nextQuestion = state.currentTopic;
+
+      return {
+        ...state,
+        points:
+          state.currentTopic.questions[state.index].answer === state.answer
+            ? state.points + 1
+            : state.points,
+        index: state.index + 1,
+        answer: null,
+        selectedAnswer: null,
+      };
+    case "finish":
+      return { ...state, status: "finish" };
+    case "restart":
+      return {
+        ...state,
+        status: "start",
+        currentTopic: null,
+        index: 0,
+        selectedAnswer: null,
+        answer: null,
+        points: 0,
+      };
 
     default:
       throw new Error("Something went wrong, try again.");
@@ -27,21 +59,45 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [{ topics, currentTopic, status, index }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [
+    {
+      topics,
+      currentTopic,
+      status,
+      index,
+      answer,
+      selectedAnswer,
+      points,
+      themeMood,
+    },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
-  console.log(currentTopic);
+  const numQuestion = currentTopic?.questions.length;
 
   return (
-    <main>
+    <main id={themeMood}>
       <div className="container">
         {status === "start" && (
           <StartScreen topics={topics} dispatch={dispatch} />
         )}
         {status === "active" && (
-          <Quiestion currentTopic={currentTopic} index={index} />
+          <Quiestion
+            currentTopic={currentTopic}
+            index={index}
+            dispatch={dispatch}
+            answer={answer}
+            selectedAnswer={selectedAnswer}
+            numQuestion={numQuestion}
+          />
+        )}
+        {status === "finish" && (
+          <FinishScreen
+            currentTopic={currentTopic}
+            points={points}
+            numQuestion={numQuestion}
+            dispatch={dispatch}
+          />
         )}
       </div>
     </main>

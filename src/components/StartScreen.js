@@ -11,7 +11,7 @@ function StartScreen({ topics, dispatch }) {
         <div className="heading-box">
           <h1 className="main-heading">
             Welcome to the <br />
-            Frontend Quiz!
+            <span>Frontend Quiz!</span>
           </h1>
           <p className="description">Pick a subject to get started.</p>
         </div>

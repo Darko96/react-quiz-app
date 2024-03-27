@@ -1,6 +1,9 @@
-function Option({ option, index }) {
+function Option({ option, index, dispatch, answer }) {
   return (
-    <div className="option">
+    <div
+      className={`option ${answer === index ? "answer" : ""}`}
+      onClick={() => dispatch({ type: "newAnswer", payload: index })}
+    >
       <div className="letters">
         {index === 0 && "A"}
         {index === 1 && "B"}
