@@ -26,7 +26,12 @@ function Quiestion({
           </div>
           <p className="current-topic">{currentTopic.title}</p>
         </div>
-        <ThemeMood dispatch={dispatch} />
+
+        <div className="theme-mood-box">
+          <div className="sun"></div>
+          <ThemeMood dispatch={dispatch} />
+          <div className="moon"></div>
+        </div>
       </div>
 
       <div className="questions">

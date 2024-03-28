@@ -8,7 +8,11 @@ function FinishScreen({ currentTopic, points, numQuestion, dispatch }) {
           <img src={currentTopic.icon} alt="quiz topic icon" />
           <p className="finish-topic-name">{currentTopic.title}</p>
         </div>
-        <ThemeMood dispatch={dispatch} />
+        <div className="theme-mood-box">
+          <div className="sun"></div>
+          <ThemeMood dispatch={dispatch} />
+          <div className="moon"></div>
+        </div>
       </div>
 
       <div className="finish-box">
