@@ -9,6 +9,7 @@ function Quiestion({
   numQuestion,
 }) {
   const hasAnswered = answer !== null;
+  const correctAnswer = currentTopic.questions[index].answer;
 
   return (
     <div className="question-container">
@@ -25,7 +26,7 @@ function Quiestion({
           </div>
           <p className="current-topic">{currentTopic.title}</p>
         </div>
-        <ThemeMood />
+        <ThemeMood dispatch={dispatch} />
       </div>
 
       <div className="questions">
@@ -47,8 +48,7 @@ function Quiestion({
               disabled={hasAnswered}
               className={`option ${selectedAnswer === i ? "answer" : ""} ${
                 hasAnswered
-                  ? currentTopic.questions[index].answer === answer &&
-                    i === answer
+                  ? correctAnswer === answer && i === answer
                     ? "correct"
                     : ""
                   : ""
@@ -58,7 +58,13 @@ function Quiestion({
                 currentTopic.questions[index].answer !== answer
                   ? "wrong"
                   : ""
-              } `}
+              } ${
+                hasAnswered
+                  ? correctAnswer === answer && i === answer
+                    ? "correct"
+                    : ""
+                  : ""
+              } ${hasAnswered ? (correctAnswer === i ? "correct" : "") : ""}`}
               onClick={() =>
                 dispatch({
                   type: "selectedAnswer",
@@ -73,7 +79,7 @@ function Quiestion({
                 {i === 2 && "C"}
                 {i === 3 && "D"}
               </span>
-              <span>{option}</span>
+              <span className="answers">{option}</span>
             </button>
           ))}
           {hasAnswered && index !== numQuestion - 1 && (

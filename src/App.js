@@ -28,8 +28,6 @@ function reducer(state, action) {
         answer: action.payload,
       };
     case "nextQuestion":
-      const nextQuestion = state.currentTopic;
-
       return {
         ...state,
         points:
@@ -51,6 +49,11 @@ function reducer(state, action) {
         selectedAnswer: null,
         answer: null,
         points: 0,
+      };
+    case "changeTheme":
+      return {
+        ...state,
+        themeMood: state.themeMood === "light" ? "dark" : "light",
       };
 
     default:

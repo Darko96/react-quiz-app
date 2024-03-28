@@ -5,7 +5,7 @@ function StartScreen({ topics, dispatch }) {
   return (
     <div className="section-startScreen">
       <div className="theme-mood-box">
-        <ThemeMood />
+        <ThemeMood dispatch={dispatch} />
       </div>
       <div className="quiz-box">
         <div className="heading-box">

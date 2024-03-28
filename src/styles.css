@@ -59,20 +59,31 @@ img {
   max-width: 100%;
 }
 
-body {
+main {
+  padding-top: 10rem;
+  min-height: 100vh;
   font-family: "Rubik", sans-serif;
-  background: url("../public/assets/images/pattern-background-desktop-light.svg");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+main,
+#light {
+  background: url("../public/assets/images/pattern-background-desktop-light.svg");
   background-color: var(--light-grey);
 }
 
+main,
+#dark {
+  background: url("../public/assets/images/pattern-background-desktop-dark.svg");
+  background-color: var(--dark-navy);
+}
+
 #light {
-  color: var(--white);
+  /* color: var(--white); */
 }
 
 #dark {
-  background-color: var(--dark-navy);
   color: var(--white);
 }
 
@@ -83,7 +94,6 @@ body {
 }
 
 .section-startScreen {
-  margin-top: 10rem;
 }
 
 .main-heading {
@@ -101,7 +111,7 @@ body {
 }
 
 #dark .main-heading {
-  color: var(--dark-navy);
+  color: var(--white);
 }
 
 .description {
@@ -116,7 +126,7 @@ body {
 }
 
 #dark .description {
-  color: var(--dark-navy);
+  color: var(--white);
 }
 
 .theme-mood-box {
@@ -167,7 +177,7 @@ body {
 
 #dark .topic {
   background-color: var(--navy);
-  color: var(--dark-navy);
+  color: var(--white);
 }
 
 .topic-icons {
@@ -222,9 +232,20 @@ body {
   gap: 2.4rem;
 }
 
-.option {
-  background-color: var(--navy);
+.answers {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+#light .answers {
+  color: var(--dark-navy);
+}
+
+#dark .answers {
   color: var(--white);
+}
+
+.option {
   width: 100%;
   font-size: 2.8rem;
   font-weight: 600;
@@ -244,8 +265,8 @@ body {
 }
 
 #dark .option {
-  background-color: var(--white);
-  color: var(--dark-navy);
+  background-color: var(--navy);
+  color: var(--white);
 }
 
 .letters {
@@ -276,10 +297,17 @@ body {
 }
 
 .num-of-questions {
-  color: var(--grey-navy);
   font-size: 1.6rem;
   font-style: italic;
   margin-bottom: 2.7rem;
+}
+
+#light .num-of-questions {
+  color: var(--grey-navy);
+}
+
+#dark .num-of-questions {
+  color: var(--white);
 }
 
 .question {
@@ -293,7 +321,7 @@ body {
 }
 
 #dark .question {
-  color: var(--dark-navy);
+  color: var(--white);
 }
 
 .btn {
@@ -308,11 +336,11 @@ body {
 }
 
 #light .btn {
-  color: var(--dark-navy);
+  color: var(--white);
 }
 
 #dark .btn {
-  color: var(--dark-navy);
+  color: var(--white);
 }
 
 .btn-submit:hover {
@@ -320,15 +348,15 @@ body {
 }
 
 .answer {
-  border: 2px solid var(--purple);
+  border: 0.3rem solid var(--purple);
 }
 
 .correct {
-  border: 2px solid var(--green);
+  border: 0.3rem solid var(--green);
 }
 
 .wrong {
-  border: 2px solid var(--red);
+  border: 0.3rem solid var(--red);
 }
 
 progress[value] {
@@ -349,6 +377,7 @@ progress[value]::-webkit-progress-bar {
   border-radius: 10em;
   background: var(--white);
 }
+
 progress[value]::-webkit-progress-value {
   border-radius: 10em;
   background: var(--purple);
@@ -370,19 +399,40 @@ progress[value]::-moz-progress-bar {
   justify-content: space-between;
 }
 
+#light .finish-topic-name {
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: var(--dark-navy);
+}
+
+#dark .finish-topic-name {
+  color: var(--white);
+}
+
 .finish-heading-box {
   width: 50%;
 }
 
 .finish-heading {
-  font-size: 3.6rem;
+  font-size: 6.4rem;
+  font-weight: 300;
+}
+
+.finish-heading-bold {
   font-weight: 500;
 }
 
+#light .finish-heading {
+  color: var(--dark-navy);
+}
+
+#dark .finish-heading {
+  color: var(--white);
+}
+
 .score-box {
-  background-color: var(--navy);
   padding: 4.8rem;
-  border-radius: 1rem;
+  border-radius: 2.4rem;
 
   display: flex;
   flex-direction: column;
@@ -390,6 +440,16 @@ progress[value]::-moz-progress-bar {
 
   margin-bottom: 3.2rem;
   width: 100%;
+}
+
+#light .score-box {
+  background-color: var(--white);
+  color: var(--dark-navy);
+}
+
+#dark .score-box {
+  background-color: var(--navy);
+  color: var(--white);
 }
 
 .score-container {
@@ -407,7 +467,16 @@ progress[value]::-moz-progress-bar {
 }
 
 .total-questions {
-  color: var(--light-bluish);
+  font-size: 1.4rem;
+  color: var(--grey-navy);
+}
+
+#light .total-questions {
+  color: var(--dark-navy);
+}
+
+#dark .total-questions {
+  color: var(--white);
 }
 
 .finish-title {
@@ -459,7 +528,7 @@ progress[value]::-moz-progress-bar {
 }
 
 .dark-mode-switch input:checked + label {
-  background-color: #333;
+  background-color: var(--purple);
 }
 
 .dark-mode-switch input:checked + label:after {

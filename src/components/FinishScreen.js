@@ -1,16 +1,14 @@
 import ThemeMood from "./ThemeMood";
 
 function FinishScreen({ currentTopic, points, numQuestion, dispatch }) {
-  console.log(currentTopic);
-
   return (
     <div className="finish-container">
       <div className="header">
         <div className="questions-topic">
           <img src={currentTopic.icon} alt="quiz topic icon" />
-          <p>{currentTopic.title}</p>
+          <p className="finish-topic-name">{currentTopic.title}</p>
         </div>
-        <ThemeMood />
+        <ThemeMood dispatch={dispatch} />
       </div>
 
       <div className="finish-box">
@@ -18,7 +16,7 @@ function FinishScreen({ currentTopic, points, numQuestion, dispatch }) {
           <h1 className="finish-heading">
             Quiz completed
             <br />
-            You scored...
+            <span className="finish-heading-bold">You scored...</span>
           </h1>
         </div>
 
