@@ -45,8 +45,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/Darko96/rest-countries-api]
-- Live Site URL: [https://rest-countries-api-pearl.vercel.app/]
+- Solution URL: [https://github.com/Darko96/react-quiz-app]
+- Live Site URL: [https://frontend-quiz-app-ivory.vercel.app/]
 
 ## My process
 
